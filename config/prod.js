@@ -7,7 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 //這裡使用require是因為這在nodejs裡的編譯環境，要使用CommonJS方式引用
 //被webpack編譯的檔案才會支援import
-module.exports = function(env) {
+module.exports = function (env) {
     const config = webpackMerge(commonConfig(), {
         output: {
             path: path.join(__dirname, '/../dist'),
@@ -15,7 +15,7 @@ module.exports = function(env) {
             filename: 'js/[name].[chunkhash].bundle.js',
             //async chunk
             chunkFilename: 'js/[name]-[id].[chunkhash].bundle.js',
-            publicPath:'/yourPublicPath/'
+            publicPath: '/yourPublicPath/'
         },
         devtool: '',
         module: {
@@ -35,7 +35,7 @@ module.exports = function(env) {
                         options: {
                             sourceMap: false
                         },
-                    }, ]
+                    },]
                 })
             }],
         },
@@ -81,17 +81,17 @@ module.exports = function(env) {
             new CopyWebpackPlugin([
                 {
                     from: 'src/data',
-                    to:'data'
-                },{
+                    to: 'data'
+                }, {
                     from: 'src/WEB-INF',
-                    to:'WEB-INF'
+                    to: 'WEB-INF'
                 }
             ], {
-                ignore: [
-                    '*.txt',
-                ],
-                copyUnmodified: true
-            }),
+                    ignore: [
+                        '*.txt',
+                    ],
+                    copyUnmodified: true
+                }),
         ]
     });
     return config;

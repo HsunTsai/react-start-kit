@@ -1,24 +1,24 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = function() {
+module.exports = function () {
     return {
         entry: {
-            'polyfill':'babel-polyfill',
+            'polyfill': 'babel-polyfill',
             'vendor': [
-                'react', 
-                'react-dom', 
-                'redux', 
-                'react-redux', 
-                'react-router', 
-                'react-intl', 
+                'react',
+                'react-dom',
+                'redux',
+                'react-redux',
+                'react-router',
+                'react-intl',
                 'react-transition-group',
                 'classnames'
-                ],
+            ],
             'main': './src/index.js'
         },
         devtool: 'source-map',
-        externals:'Graph',
+        externals: 'Graph',
         resolve: {
             //免寫後綴名字
             extensions: ['.js', '.jsx', '.json'],
@@ -60,7 +60,7 @@ module.exports = function() {
                 }
             }],
         },
-        plugins: [　　
+        plugins: [
             //自動產生首頁
             new HtmlWebpackPlugin({
                 title: 'React Web Title',

@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 //這裡使用require是因為這在nodejs裡的編譯環境，要使用CommonJS方式引用
 //被webpack編譯的檔案才會支援import
-module.exports = function(env) {
+module.exports = function (env) {
     const config = webpackMerge(commonConfig(), {
         entry: [
             'babel-polyfill',
@@ -14,7 +14,7 @@ module.exports = function(env) {
             './src/index.js'
         ],
         output: {
-            publicPath:'/'
+            publicPath: '/'
         },
         devServer: {
             port: 9999,
@@ -37,11 +37,11 @@ module.exports = function(env) {
                         options: {
                             sourceMap: true
                         },
-                    }, ]
+                    },]
                 })
             }],
         },
-        plugins: [　　
+        plugins: [
             //把模組中css部份提取出來成一個檔案
             new ExtractTextPlugin({
                 disable: true

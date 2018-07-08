@@ -1,11 +1,18 @@
 {
   "presets": [
-    ["env", {
-      "modules": false
-    }],
-    ['es2015', {
-      modules: false, loose: false 
-    }],
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
+    [
+      "es2015",
+      {
+        "modules": false,
+        "loose": false
+      }
+    ],
     "react",
     "stage-1"
   ],
