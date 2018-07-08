@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    
+<security-role>
+    <description>All user of application</description>
+    <role-name>user</role-name>
+  </security-role>
+  <security-role>
+    <description>Administrators</description>
+    <role-name>admin</role-name>
+  </security-role>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>all contrainted resources</web-resource-name>
+      <description>all contrainted resources</description>
+      <url-pattern>/</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+      <http-method>HEAD</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <description>Constraint for user role</description>
+      <role-name>admin</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/index.html</form-login-page>
+      <form-error-page>/login.html</form-error-page>
+    </form-login-config>
+  </login-config>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/index.html</location>
+  </error-page>
+
+  <distributable />
+</web-app>
