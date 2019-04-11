@@ -6,6 +6,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 //這裡使用require是因為這在nodejs裡的編譯環境，要使用CommonJS方式引用
 //被webpack編譯的檔案才會支援import
+
+const contextRoot = '/',
+	domain = 'http://(!!!Your localhost)'; //Proxy後端的host(自己起在Local端)
+//domain = 'http://(!!!Your serverhost)/(!!!Your server back-end path)'; //Proxy後端的host(在Server端的Backend 與上者選一)
+
 module.exports = function (env) {
 	const config = webpackMerge(commonConfig(), {
 		entry: [
@@ -14,12 +19,20 @@ module.exports = function (env) {
 			'./src/index.js'
 		],
 		output: {
-			publicPath: '/'
+			publicPath: contextRoot
 		},
 		devServer: {
 			port: 9999,
 			historyApiFallback: true,
-			contentBase: path.join(__dirname, '/../src')
+			contentBase: path.join(__dirname, '/../src'),
+			proxy: {
+				'/(!!!Your API Path)': {
+					target: '(!!!Your API server hostname)', //ex: http://www.hsunserver.ga/
+					changeOrigin: true,
+					secure: false,
+					cookieDomainRewrite: ''
+				},
+			}
 		},
 		module: {
 			rules: [{
@@ -42,6 +55,12 @@ module.exports = function (env) {
 			}],
 		},
 		plugins: [
+			new webpack.DefinePlugin({
+				'process.env': {
+					'CONTEXT_ROOT': JSON.stringify(contextRoot),
+					'DOMAIN': JSON.stringify(domain)
+				}
+			}),
 			//把模組中css部份提取出來成一個檔案
 			new ExtractTextPlugin({
 				disable: true

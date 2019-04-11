@@ -5,6 +5,9 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const contextRoot = '/(!!!Your front-end path on server)/',
+	domain = '/(!!!Your back-end path on server)';
 //這裡使用require是因為這在nodejs裡的編譯環境，要使用CommonJS方式引用
 //被webpack編譯的檔案才會支援import
 module.exports = function (env) {
@@ -15,7 +18,7 @@ module.exports = function (env) {
 			filename: 'js/[name].[chunkhash].bundle.js',
 			//async chunk
 			chunkFilename: 'js/[name]-[id].[chunkhash].bundle.js',
-			publicPath: '/'
+			publicPath: contextRoot
 		},
 		devtool: '',
 		module: {
@@ -45,7 +48,9 @@ module.exports = function (env) {
 			}),
 			new webpack.DefinePlugin({
 				'process.env': {
-					'NODE_ENV': JSON.stringify('production')
+					'NODE_ENV': JSON.stringify('production'),
+					'CONTEXT_ROOT': JSON.stringify(contextRoot),
+					'DOMAIN': JSON.stringify(domain),
 				}
 			}),
 			new webpack.optimize.UglifyJsPlugin({
@@ -80,13 +85,16 @@ module.exports = function (env) {
 			}),
 			new CopyWebpackPlugin([
 				{
+					from: 'src/images',
+					to: 'images'
+				},
+				{
 					from: 'src/data',
 					to: 'data'
 				}, {
 					from: 'src/WEB-INF',
 					to: 'WEB-INF'
-				}
-			], {
+				}], {
 					ignore: [
 						'*.txt',
 					],
