@@ -30,7 +30,7 @@ module.exports = function () {
 			rules: [{
 				enforce: 'pre',
 				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
+				//exclude: /node_modules/,
 				loader: 'eslint-loader',
 				options: {
 					cache: false,
@@ -39,7 +39,7 @@ module.exports = function () {
 				}
 			}, {
 				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
+				//exclude: /node_modules/,
 				loader: 'babel-loader',
 				options: {
 					//被轉換的結果將會被暫存起來。當Webpack再次編譯時，將會首先嘗試從暫存中讀取

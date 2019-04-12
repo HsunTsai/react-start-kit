@@ -7,6 +7,7 @@ const { domain, contextRoot } = webConfig;
 //Update  updateLocale
 //Delete  deleteLocale
 export default {
+	getContextRoot: contextRoot,
 	getLocale: contextRoot + 'data/',
 	getLocaleEN: contextRoot + 'data/' + 'en.json',
 	domain: `${domain}`,
