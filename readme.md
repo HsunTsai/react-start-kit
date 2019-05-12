@@ -2,16 +2,16 @@
 A React Start Kit with webpack
 
 ## How to satrt
-1.Clone this project
-2.Install node js
-3.Command line(in project folder) => npm run project-init
-4.Command line(in project folder) => npm run start
-5.Enjoy coding
+1.Clone this project<br />
+2.Install node js<br />
+3.Command line(in project folder) => npm run project-init<br />
+4.Command line(in project folder) => npm run start<br />
+5.Enjoy coding<br />
 
 ## How to setup your backend Server
-1.open VSCode search all by "(!!!"
-2.you can find "(!!!Your localhost)" & "(!!!Your serverhost)" & "(!!!Your API Path)" & "(!!!Your API server hostname)" & "(!!!Your front-end path on server)" & "(!!!Your back-end path on server)" & "(!!!frontend path on server)" 
-3.replace it by your environment
+1.open VSCode search all by "(!!!"<br />
+2.you can find "(!!!Your localhost)" & "(!!!Your serverhost)" & "(!!!Your API Path)" & "(!!!Your API server hostname)" & "(!!!Your front-end path on server)" & "(!!!Your back-end path on server)" & "(!!!frontend path on server)" <br />
+3.replace it by your environment<br />
 
 ## How to deploy
 Command line(in project folder) => npm run deploy
