@@ -1,0 +1,19 @@
+.home {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  &__title {
+    color: #666;
+    text-shadow: unset;
+    font-weight: bold;
+    font-size: 24px;
+    &--active {
+      color: #0087dc;
+      text-shadow: 2px 2px 3px #434a54;
+    }
+  }
+  &__btn {
+    width: fit-content;
+    margin-top: 24px;
+  }
+}

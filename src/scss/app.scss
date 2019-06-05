@@ -1,6 +1,33 @@
-@import 'common';
-@import 'default';
-@import 'layout';
-
-
-
+.app {
+  &__header {
+    display: flex;
+    align-items: center;
+    background: #0087dc;
+    padding: 12px;
+    &-icon {
+      width: 36px;
+      height: 36px;
+      margin-right: 16px;
+    }
+    &-item {
+      line-height: 36px;
+      color: white;
+      text-decoration: none;
+      margin-right: 24px;
+      font-weight: bold;
+      font-size: 18px;
+      &--active {
+        text-shadow: 2px 2px 3px #434a54;
+      }
+      &:hover {
+        color: white;
+        text-shadow: 2px 2px 3px #434a54;
+      }
+    }
+    &-select {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

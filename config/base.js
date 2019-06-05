@@ -15,7 +15,7 @@ module.exports = function () {
 				'react-transition-group',
 				'classnames'
 			],
-			'main': './src/index.js'
+			'main': './src/index.jsx'
 		},
 		devtool: 'source-map',
 		externals: 'Graph',

@@ -8,10 +8,10 @@ export default class Bundle extends Component {
 	state = {
 		mod: null
 	}
-	componentWillMount() {
+	UNSAFE_componentWillMount() {
 		this.load(this.props);
 	}
-	componentWillReceiveProps(nextProps) {
+	UNSAFE_componentWillReceiveProps(nextProps) {
 		if (nextProps.load !== this.props.load) {
 			this.load(nextProps);
 		}
@@ -27,7 +27,7 @@ export default class Bundle extends Component {
 		});
 	}
 	render() {
-		if (!this.state.mod){
+		if (!this.state.mod) {
 			return false;
 		}
 		return this.props.children(this.state.mod);

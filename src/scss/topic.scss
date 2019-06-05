@@ -1,0 +1,11 @@
+.topic {
+  padding: 12px;
+  &__title {
+    color: #666;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  &__block{
+      margin-top: 12px;
+  }
+}

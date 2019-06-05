@@ -43,7 +43,14 @@
             "error",
             "always"
         ],
-        "no-console": "warn",
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "info"
+                ]
+            }
+        ],
         "react/prop-types": "off",
         "no-unused-vars": [
             "error",

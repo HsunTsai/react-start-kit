@@ -2,24 +2,30 @@
 
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Button } from 'antd';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 class Home extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			active: false,
+		};
 	}
 
 	render() {
-		let btnClass = classNames({
-			'home': true
-		});
-		
+		const { active } = this.state;
 		return (
-		<div className={btnClass}>
-			Home
-			<FormattedMessage id='superHello' values={{ someone: <b>'User'</b>}} />
-		</div>
+			<div className='home'>
+				<div className={classNames('home__title', { 'home__title--active': active })}>
+					Home Page
+				</div>
+				<FormattedMessage id='superHello' values={{ someoneName: 'Hsun.Tsai' }} />
+				<Button className='home__btn' type="primary" onClick={() => this.setState({ active: !active })}>
+					{`Home Title ${active ? 'inActive' : 'Active'}`}
+				</Button>
+			</div>
 		);
 	}
 }

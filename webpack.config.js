@@ -1,5 +1,4 @@
-function buildConfig(env) {
-  return require('./config/' + env + '.js')(env)
-}
 
-module.exports = buildConfig;
+module.exports = (env, argv) => {
+  return require('./config/' + argv.mode + '.js')();
+};

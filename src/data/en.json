@@ -1,4 +1,4 @@
 {
-  "hello": "hello",
-  "superHello": "hello，{ someone } !"
+  "hello": "Hello !",
+  "superHello": "Hello ! { someoneName } !"
 }

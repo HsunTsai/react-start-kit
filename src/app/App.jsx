@@ -5,20 +5,22 @@ import { connect } from 'react-redux';
 import {
 	BrowserRouter as Router,
 	Route,
-	NavLink,
 	Switch,
 	Redirect
 } from 'react-router-dom';
+import 'antd/dist/antd.css';
 
-import { changeLang } from './actions/base';
 import services from './config/services';
 import AsyncBundle from './components/AsyncBundle';
+import Header from './components/Header';
+
 //Sync
 import Home from './containers/Home';
 
 //Async
 import loadAbout from 'bundle-loader?lazy!./containers/About';
 import loadTopics from 'bundle-loader?lazy!./containers/Topics';
+
 
 //Async bundle
 const About = () => (
@@ -34,36 +36,46 @@ const Topics = () => (
 );
 
 class App extends Component {
+
 	constructor(props) {
 		super(props);
+		this.handleLanguageChange = this.handleLanguageChange.bind(this);
+	}
+
+	handleLanguageChange(lang) {
+		// console.log(lang);
+		const { onChangeLanguage } = this.props;
+		onChangeLanguage(lang);
+	}
+
+
+	UNSAFE_componentWillReceiveProps(nextProps) {
+		const { language } = this.props;
+		if (language !== nextProps.language) {
+			setTimeout(() => {
+				this.forceUpdate();
+			}, 3000);
+		}
 	}
 
 	render() {
-		const { onChangeLanguage } = this.props,
-			homePath = '/',
-			abputPath = '/about',
-			topicPath = '/topic';
+		const pages = [
+			{ path: '/home', name: 'Home', component: Home },
+			{ path: '/about', name: 'About', component: About },
+			{ path: '/topic', name: 'Topic', component: Topics },
+		];
 		return (
 			<Router basename={services.getContextRoot}>
-				<div>
-					<ul className="nav">
-						<img src="../images/test_logo.png" height="47" width="115" alt="Image Error" />
-						<li><NavLink to={homePath} activeClassName='nav__link--active'>Home</NavLink></li>
-						<li><NavLink to={abputPath} activeClassName='nav__link--active'>About</NavLink></li>
-						<li><NavLink to={topicPath} activeClassName='nav__link--active'>Topics</NavLink></li>
-					</ul>
-
-					<hr />
-
-					<button onClick={() => onChangeLanguage('en')}>en_US</button>
-					<button onClick={() => onChangeLanguage('zh')}>zh-Hans</button>
-
-					<hr />
+				<div className='app'>
+					<Header pages={pages} />
 					<Switch>
-						<Route path={homePath} component={Home} />
-						<Route path={abputPath} component={About} />
-						<Route path={topicPath} component={Topics} />
-						<Redirect to={homePath} />
+						{pages.map((page, index) =>
+							<Route
+								exact={index == 0}
+								key={index}
+								path={page.path}
+								component={page.component} />)}
+						<Redirect to={pages[0].path} />
 					</Switch>
 				</div>
 			</Router>
@@ -71,12 +83,9 @@ class App extends Component {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		onChangeLanguage: (lang) => {
-			dispatch(changeLang(lang));
-		}
-	};
+const mapStateToProps = (state) => {
+	const { language } = state.app;
+	return { language };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
