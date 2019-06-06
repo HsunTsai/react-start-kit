@@ -31,14 +31,16 @@ module.exports = function (env = 'production') {
 					'postcss-loader',
 					'sass-loader',
 				]
-			}, {
-				test: /\.(png|jpe?g|gif)(\?.*)?$/,
-				loader: 'url-loader',
-				options: {
-					limit: 8192,
-					name: 'images/[name].[ext]'
-				}
-			}],
+			},
+			// {
+			// 	test: /\.(png|jpe?g|gif)(\?.*)?$/,
+			// 	loader: 'url-loader',
+			// 	options: {
+			// 		limit: 8192,
+			// 		name: 'images/[name].[ext]'
+			// 	}
+			// }
+			],
 		},
 		plugins: [
 			new CleanWebpackPlugin(['dist/*'], {

@@ -1,5 +1,5 @@
 @import "common";
 @import "app";
-@import "home";
-@import "about";
-@import "topic";
+@import "./container/home";
+@import "./container/about";
+@import "./container/topic";
