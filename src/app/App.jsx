@@ -37,18 +37,6 @@ const Topics = () => (
 
 class App extends Component {
 
-	constructor(props) {
-		super(props);
-		this.handleLanguageChange = this.handleLanguageChange.bind(this);
-	}
-
-	handleLanguageChange(lang) {
-		// console.log(lang);
-		const { onChangeLanguage } = this.props;
-		onChangeLanguage(lang);
-	}
-
-
 	UNSAFE_componentWillReceiveProps(nextProps) {
 		const { language } = this.props;
 		if (language !== nextProps.language) {

@@ -7,6 +7,11 @@ import zh from 'react-intl/locale-data/zh';
 
 addLocaleData([...en, ...zh]);
 
+let messages;
+export function getI18n() {
+	return messages;
+}
+
 const ReduxIntlProvider = ({ children, store, language, changeLang }) => {
 	useEffect(() => {
 		let lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
@@ -16,6 +21,7 @@ const ReduxIntlProvider = ({ children, store, language, changeLang }) => {
 	}, []);
 	// console.info('變動', language);
 	if (language && language.messages) {
+		messages = language.messages;
 		return (
 			<Provider store={store}>
 				<IntlProvider locale={language.locale} messages={language.messages}>

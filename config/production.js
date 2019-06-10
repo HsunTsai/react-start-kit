@@ -59,19 +59,17 @@ module.exports = function (env = 'production') {
 					'VERSION': JSON.stringify(package.version + package.build)
 				}
 			}),
-			new CopyWebpackPlugin([{
-				from: 'src/locales',
-				to: 'locales'
-			}, {
-				from: 'src/images',
-				to: 'images'
-			}, {
-				from: 'src/data',
-				to: 'data'
-			}, {
-				from: 'src/WEB-INF',
-				to: 'WEB-INF'
-			}], {
+			new CopyWebpackPlugin([
+				{
+					from: 'src/images',
+					to: 'images'
+				}, {
+					from: 'src/data',
+					to: 'data'
+				}, {
+					from: 'src/WEB-INF',
+					to: 'WEB-INF'
+				}], {
 					ignore: [
 						'*.txt',
 					],
