@@ -18,5 +18,7 @@ A React Start Kit with webpack
 ```
 
 ## How to deploy
+```xml
 Command line(in project folder) => npm run deploy
+```
 
