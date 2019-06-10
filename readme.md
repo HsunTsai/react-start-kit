@@ -4,7 +4,7 @@ A React Start Kit with webpack
 ## How to satrt
 ```xml
 1.Clone this project
-2.Install node js
+2.Install node js (https://nodejs.org/en/)
 3.Command line(in project folder) => npm run project-init
 4.Command line(in project folder) => npm run start
 5.Enjoy coding
