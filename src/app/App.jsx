@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-	BrowserRouter as Router,
+	HashRouter,
 	Route,
 	Switch,
 	Redirect
@@ -53,7 +53,7 @@ class App extends Component {
 			{ path: '/topic', name: 'Topic', component: Topics },
 		];
 		return (
-			<Router basename={services.getContextRoot}>
+			<HashRouter basename={services.getContextRoot}>
 				<div className='app'>
 					<Header pages={pages} />
 					<Switch>
@@ -66,7 +66,7 @@ class App extends Component {
 						<Redirect to={pages[0].path} />
 					</Switch>
 				</div>
-			</Router>
+			</HashRouter>
 		);
 	}
 }

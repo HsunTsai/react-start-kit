@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function () {
@@ -61,6 +62,9 @@ module.exports = function () {
 			}],
 		},
 		plugins: [
+			new webpack.ExternalsPlugin('commonjs', [
+				'electron'
+			]),
 			//自動產生首頁
 			new HtmlWebpackPlugin({
 				title: 'React Web Title',

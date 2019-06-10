@@ -1,4 +1,8 @@
 {
   "hello": "哈囉 !",
-  "superHello": "哈囉 ! { someoneName } !"
+  "superHello": "哈囉 ! { someoneName } !",
+  "checkUpdate": "檢查更新",
+  "common_succeed": "成功",
+  "common_succeed_detail": "這個動作成功",
+  "common_failed": "失敗"
 }

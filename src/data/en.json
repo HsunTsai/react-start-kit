@@ -1,4 +1,8 @@
 {
   "hello": "Hello !",
-  "superHello": "Hello ! { someoneName } !"
+  "superHello": "Hello ! { someoneName } !",
+  "checkUpdate": "Check Update",
+  "common_succeed": "Succeed",
+  "common_succeed_detail": "This action is successfull",
+  "common_failed": "Failed"
 }

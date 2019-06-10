@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const package = require("../package.json");
 
-const contextRoot = '/(!!!Your front-end path on server)/',
+const contextRoot = './',
 	domain = '/(!!!Your back-end path on server)';
 
 module.exports = function (env = 'production') {
@@ -32,14 +32,14 @@ module.exports = function (env = 'production') {
 					'sass-loader',
 				]
 			},
-			// {
-			// 	test: /\.(png|jpe?g|gif)(\?.*)?$/,
-			// 	loader: 'url-loader',
-			// 	options: {
-			// 		limit: 8192,
-			// 		name: 'images/[name].[ext]'
-			// 	}
-			// }
+				// {
+				// 	test: /\.(png|jpe?g|gif)(\?.*)?$/,
+				// 	loader: 'url-loader',
+				// 	options: {
+				// 		limit: 8192,
+				// 		name: 'images/[name].[ext]'
+				// 	}
+				// }
 			],
 		},
 		plugins: [

@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './app/reducers';
 import ReduxIntlProvider from './app/ReduxIntlProvider';
+import ElectronProvicer from './app/ElectronProvicer';
 import App from './app/App';
 
 const store = createStore(
@@ -18,9 +19,11 @@ const store = createStore(
 const render = Component => {
 	ReactDOM.render(
 		<ReduxIntlProvider store={store}>
-			<AppContainer>
-				<Component />
-			</AppContainer>
+			<ElectronProvicer store={store}>
+				<AppContainer>
+					<Component />
+				</AppContainer>
+			</ElectronProvicer>
 		</ReduxIntlProvider>,
 		document.getElementById('app')
 	);
