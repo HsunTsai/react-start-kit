@@ -8,11 +8,8 @@ module.exports = function() {
 			vendor: [
 				'react',
 				'react-dom',
-				'redux',
-				'react-redux',
 				'react-router',
 				'react-intl',
-				'react-transition-group',
 				'classnames',
 			],
 			main: './src/index.jsx',
