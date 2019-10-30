@@ -1,16 +1,13 @@
-import {
-	FETCH_LOCALE_SUCCESS,
-	FETCH_LOCALE_FAILED
-} from '../actions/base';
+import { FETCH_LOCALE_SUCCESS, FETCH_LOCALE_FAILED } from '../actions/app';
 
 const INITIAL_STATE = {
 	language: {
 		locale: 'zh',
-		messages: null
-	}
+		messages: null,
+	},
 };
 
-export default function app(state = INITIAL_STATE, action) {
+const app = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case FETCH_LOCALE_SUCCESS: {
 			return { ...state, language: action.payload };
@@ -20,4 +17,6 @@ export default function app(state = INITIAL_STATE, action) {
 		default:
 			return state;
 	}
-}
+};
+
+export default app;

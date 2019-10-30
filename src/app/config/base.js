@@ -1,8 +1,6 @@
-//process.env pass by webpack
-let domain = process.env.DOMAIN,
-	contextRoot = process.env.CONTEXT_ROOT;
+// process.env pass by webpack
 
 export default {
-	domain,
-	contextRoot
+	domain: process.env.DOMAIN,
+	contextRoot: process.env.CONTEXT_ROOT,
 };

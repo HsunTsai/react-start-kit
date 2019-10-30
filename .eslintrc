@@ -21,7 +21,7 @@
 	},
 	"plugins": ["prettier", "react"],
 	"globals": {
-		"process": true, //for DefinePlugin provide env
+		"process": true, // for DefinePlugin provide env
 		"tinymce": true,
 		"jest": true,
 		"describe": true,

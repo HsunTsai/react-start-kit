@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const package = require("../package.json");
 
-const contextRoot = '/(!!!Your front-end path on server)/',
+const contextRoot = '/test/',
 	domain = '/(!!!Your back-end path on server)';
 
 module.exports = function (env = 'production') {

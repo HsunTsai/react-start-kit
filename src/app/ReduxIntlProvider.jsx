@@ -1,9 +1,12 @@
-import { Provider, connect } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, createContext, useReducer } from 'react';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { changeLang } from './actions/base';
 import en from 'react-intl/locale-data/en';
 import zh from 'react-intl/locale-data/zh';
+
+import { changeLang } from './actions/app';
+
+// 將 combineReducer 後的 Reducer import
+import reducers from './reducers/index';
 
 addLocaleData([...en, ...zh]);
 
@@ -11,80 +14,40 @@ let messages;
 export function getI18n() {
 	return messages;
 }
+// 建立一個 context component ，並匯出給子 component 使用
+const ReducerContext = createContext();
+export { ReducerContext };
 
-const ReduxIntlProvider = ({ children, store, language, changeLang }) => {
+/* 
+ 呼叫 combineReducer 後的 reducers ，
+ 利用如果沒傳任何 action 就回傳目前的 state 來取得初始資料
+*/
+const initState = reducers();
+
+const ReduxIntlProvider = ({ children }) => {
+	// 使用 useReducer 將創建後的 state 及 dispatch 放進 reducer
+	const reducer = useReducer(reducers, initState);
+	const [state, dispatch] = reducer;
+	const { language } = state.app;
 	useEffect(() => {
-		let lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
+		let lang = navigator.languages
+			? navigator.languages[0]
+			: navigator.language || navigator.userLanguage;
 		lang = lang.toLowerCase();
 		lang = lang.split('-')[0] || 'en';
-		changeLang(lang);
+		changeLang(lang, dispatch);
 	}, []);
-	// console.info('變動', language);
+	// console.info('language change', language);
 	if (language && language.messages) {
-		messages = language.messages;
 		return (
-			<Provider store={store}>
-				<IntlProvider locale={language.locale} messages={language.messages}>
+			<IntlProvider locale={language.locale} messages={language.messages}>
+				<ReducerContext.Provider value={reducer}>
 					{children}
-				</IntlProvider>
-			</Provider>
+				</ReducerContext.Provider>
+			</IntlProvider>
 		);
-	} else {
-		return false;
 	}
+	return false;
 };
 
-const mapStateToProps = (state) => {
-	const { language } = state.app;
-	return { language };
-};
-
-export default connect(
-	mapStateToProps, { changeLang }
-)(ReduxIntlProvider);
-
-
-// let needUpdate = false;
-
-// class ReduxIntlProvider extends Component {
-
-// 	UNSAFE_componentWillMount() {
-// 		const { changeLang } = this.props;
-// 		let lang = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
-// 		lang = lang.toLowerCase();
-// 		lang = lang.split('-')[0] || 'en';
-// 		changeLang && changeLang(lang);
-// 	}
-// 	UNSAFE_componentWillReceiveProps(nextProps) {
-// 		const { language } = this.props;
-// 		if (language !== nextProps.language) {
-// 			needUpdate = true;
-// 			console.info('新職');
-// 		}
-// 	}
-
-// 	componentDidUpdate() {
-// 		console.info('即將強迫更新');
-// 		if (needUpdate) {
-// 			console.info('強迫更新');
-// 			needUpdate = false;
-// 			this.forceUpdate();
-// 		}
-// 	}
-
-// 	render() {
-// 		const { children, store, language } = this.props;
-// 		console.info('來了', language);
-// 		if (language && language.locale) {
-// 			return (
-// 				<Provider store={store}>
-// 					<IntlProvider locale={language.locale} messages={language.messages}>
-// 						{children}
-// 					</IntlProvider>
-// 				</Provider>
-// 			);
-// 		} else {
-// 			return false;
-// 		}
-// 	}
-// }
+export default ReduxIntlProvider;

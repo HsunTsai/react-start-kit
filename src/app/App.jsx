@@ -1,79 +1,75 @@
-'use strict';
-
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { lazy, Suspense } from 'react';
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
 import {
 	BrowserRouter as Router,
 	Route,
 	Switch,
-	Redirect
+	Redirect,
 } from 'react-router-dom';
 import 'antd/dist/antd.css';
 
 import services from './config/services';
-import AsyncBundle from './components/AsyncBundle';
 import Header from './components/Header';
 
-//Sync
-import Home from './containers/Home';
+// LazyLoader
+const HomeComponent = lazy(() => import('./containers/Home'));
+const AboutComponent = lazy(() => import('./containers/About'));
+const TopicsComponent = lazy(() => import('./containers/Topics'));
 
-//Async
-import loadAbout from 'bundle-loader?lazy!./containers/About';
-import loadTopics from 'bundle-loader?lazy!./containers/Topics';
+const LoadingMessage = () => 'Loading...';
 
-
-//Async bundle
-const About = () => (
-	<AsyncBundle load={loadAbout}>
-		{(About) => <About />}
-	</AsyncBundle>
-);
-
-const Topics = () => (
-	<AsyncBundle load={loadTopics}>
-		{(Topics) => <Topics />}
-	</AsyncBundle>
-);
-
-class App extends Component {
-
-	UNSAFE_componentWillReceiveProps(nextProps) {
-		const { language } = this.props;
-		if (language !== nextProps.language) {
-			setTimeout(() => {
-				this.forceUpdate();
-			}, 3000);
-		}
-	}
-
-	render() {
-		const pages = [
-			{ path: '/home', name: 'Home', component: Home },
-			{ path: '/about', name: 'About', component: About },
-			{ path: '/topic', name: 'Topic', component: Topics },
-		];
-		return (
-			<Router basename={services.getContextRoot}>
-				<div className='app'>
-					<Header pages={pages} />
+const App = () => {
+	const pages = [
+		{ path: '/home', name: 'Home', component: <HomeComponent /> },
+		{ path: '/about', name: 'About', component: <AboutComponent /> },
+		{ path: '/topic', name: 'Topic', component: <TopicsComponent /> },
+	];
+	return (
+		<Router basename={services.getContextRoot}>
+			<div className="app">
+				<Header pages={pages} />
+				<Suspense fallback={<LoadingMessage />}>
 					<Switch>
-						{pages.map((page, index) =>
+						{pages.map((page, index) => (
 							<Route
-								exact={index == 0}
-								key={index}
+								key={index.toString()}
+								exact={index === 0}
 								path={page.path}
-								component={page.component} />)}
+							>
+								{page.component}
+							</Route>
+						))}
 						<Redirect to={pages[0].path} />
 					</Switch>
-				</div>
-			</Router>
-		);
-	}
-}
-
-const mapStateToProps = (state) => {
-	const { language } = state.app;
-	return { language };
+				</Suspense>
+			</div>
+		</Router>
+	);
 };
 
-export default connect(mapStateToProps)(App);
+// App.defaultProps = {
+// 	language: null,
+// };
+
+// App.propTypes = {
+// 	language: PropTypes.objectOf(PropTypes.any),
+// };
+
+// const mapStateToProps = state => {
+// 	const { language } = state.app;
+// 	return { language };
+// };
+
+// export default connect(mapStateToProps)(App);
+
+export default App;
+
+// UNSAFE_componentWillReceiveProps(nextProps) {
+// 	const { language } = this.props;
+// 	if (language !== nextProps.language) {
+// 		setTimeout(() => {
+// 			this.forceUpdate();
+// 		}, 3000);
+// 	}
+// }
