@@ -1,63 +1,36 @@
 {
-    "parser": "babel-eslint",
-    "env": {
-        "browser": true,
-        "es6": true,
-        "commonjs": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 6,
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "jsx": true
-        },
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "globals": {
-        "process": true
-    },
-    "rules": {
-        "indent": [
-            "error",
-            "tab",
-            {
-                "SwitchCase": 1
-            }
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        "no-console": [
-            "warn",
-            {
-                "allow": [
-                    "info"
-                ]
-            }
-        ],
-        "react/prop-types": "off",
-        "no-unused-vars": [
-            "error",
-            {
-                "vars": "all",
-                "varsIgnorePattern": "React"
-            }
-        ]
-    }
+	"parser": "babel-eslint",
+	"env": {
+		"browser": true,
+		"es6": true,
+		"commonjs": true
+	},
+	"settings": {
+		"react": {
+			"version": require("./package.json").dependencies.react
+		}
+	},
+	"extends": ["airbnb", "prettier", "prettier/react"],
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true,
+			"jsx": true
+		},
+		"sourceType": "module"
+	},
+	"plugins": ["prettier", "react"],
+	"globals": {
+		"process": true, //for DefinePlugin provide env
+		"tinymce": true,
+		"jest": true,
+		"describe": true,
+		"it": true,
+		"expect": true
+	},
+	"rules": {
+		"prettier/prettier": ["error"],
+		"linebreak-style": "off",
+		"import/no-named-as-default": "off"
+	}
 }
