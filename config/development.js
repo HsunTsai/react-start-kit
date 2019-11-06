@@ -1,4 +1,3 @@
-
 const baseConfig = require('./base.js');
 const webpackMerge = require('webpack-merge');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -7,10 +6,9 @@ const path = require('path');
 const package = require('../package.json');
 
 const contextRoot = '/',
-	domain = 'http://(!!!Your localhost)'; //Proxy後端的host(自己起在Local端)
-//domain = 'http://(!!!Your serverhost)/(!!!Your server back-end path)'; //Proxy後端的host(在Server端的Backend 與上者選一)
+	domain = '/(!!!Your back-end path on server)';
 
-module.exports = function (env = 'development') {
+module.exports = function(env = 'development') {
 	const config = webpackMerge(baseConfig(env), {
 		entry: {
 			polyfill: 'babel-polyfill',
