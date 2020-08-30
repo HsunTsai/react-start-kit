@@ -14,7 +14,6 @@ module.exports = function() {
 			],
 			main: './src/index.jsx',
 		},
-		devtool: 'source-map',
 		externals: 'Graph',
 		resolve: {
 			//免寫後綴名字
