@@ -1,6 +1,6 @@
 @import 'antd/dist/antd.css';
-@import 'common';
-@import 'app';
-@import './container/home';
-@import './container/about';
-@import './container/topic';
+@import './common.scss';
+@import './app.scss';
+@import './container/home.scss';
+@import './container/about.scss';
+@import './container/topic.scss';
