@@ -1,7 +1,8 @@
 const baseConfig = require('./base.js');
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const webpack = require('webpack');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 const package = require('../package.json');
 
@@ -11,7 +12,6 @@ const contextRoot = '/',
 module.exports = (env = 'development') => {
 	const config = merge(baseConfig(env), {
 		entry: {
-			polyfill: 'babel-polyfill',
 			hotLoader: 'react-hot-loader/patch',
 			main: './src/index.jsx',
 		},

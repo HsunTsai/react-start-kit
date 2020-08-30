@@ -4,8 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = () => {
 	return {
 		entry: {
-			polyfill: 'babel-polyfill',
-			vendor: ['react', 'react-dom', 'react-router', 'react-intl', 'classnames'],
 			main: './src/index.jsx',
 		},
 		externals: 'Graph',
