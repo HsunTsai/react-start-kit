@@ -30,9 +30,7 @@ const ReduxIntlProvider = ({ children }) => {
 	const [state, dispatch] = reducer;
 	const { language } = state.app;
 	useEffect(() => {
-		let lang = navigator.languages
-			? navigator.languages[0]
-			: navigator.language || navigator.userLanguage;
+		let lang = navigator.languages ? navigator.languages[0] : navigator.language || navigator.userLanguage;
 		lang = lang.toLowerCase();
 		lang = lang.split('-')[0] || 'en';
 		changeLang(lang, dispatch);
@@ -41,9 +39,7 @@ const ReduxIntlProvider = ({ children }) => {
 	if (language && language.messages) {
 		return (
 			<IntlProvider locale={language.locale} messages={language.messages}>
-				<ReducerContext.Provider value={reducer}>
-					{children}
-				</ReducerContext.Provider>
+				<ReducerContext.Provider value={reducer}>{children}</ReducerContext.Provider>
 			</IntlProvider>
 		);
 	}

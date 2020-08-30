@@ -15,15 +15,8 @@ const Home = () => {
 			>
 				Home Page
 			</div>
-			<FormattedMessage
-				id="superHello"
-				values={{ someoneName: 'Hsun.Tsai' }}
-			/>
-			<Button
-				className="home__btn"
-				type="primary"
-				onClick={() => setActive(!active)}
-			>
+			<FormattedMessage id="superHello" values={{ someoneName: 'Hsun.Tsai' }} />
+			<Button className="home__btn" type="primary" onClick={() => setActive(!active)}>
 				{`Home Title ${active ? 'inActive' : 'Active'}`}
 			</Button>
 		</div>

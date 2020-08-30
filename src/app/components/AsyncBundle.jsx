@@ -6,8 +6,8 @@ React router 非同步載入組件
 */
 export default class Bundle extends Component {
 	state = {
-		mod: null
-	}
+		mod: null,
+	};
 	UNSAFE_componentWillMount() {
 		this.load(this.props);
 	}
@@ -18,11 +18,11 @@ export default class Bundle extends Component {
 	}
 	load(props) {
 		this.setState({
-			mod: null
+			mod: null,
 		});
-		props.load((mod) => {
+		props.load(mod => {
 			this.setState({
-				mod: mod.default ? mod.default : mod
+				mod: mod.default ? mod.default : mod,
 			});
 		});
 	}
@@ -33,4 +33,3 @@ export default class Bundle extends Component {
 		return this.props.children(this.state.mod);
 	}
 }
-

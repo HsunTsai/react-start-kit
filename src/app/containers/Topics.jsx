@@ -15,24 +15,14 @@ const Topics = () => {
 
 	return (
 		<div className="topic">
-			<div className="topic__title">
-				{`Topic Page (${JSON.stringify(clickOption)})`}
-			</div>
+			<div className="topic__title">{`Topic Page (${JSON.stringify(clickOption)})`}</div>
 			<div className="topic__block">
-				<Checkbox.Group
-					options={options}
-					defaultValue={['Click']}
-					onChange={type => setClickOption(type)}
-				/>
+				<Checkbox.Group options={options} defaultValue={['Click']} onChange={type => setClickOption(type)} />
 			</div>
 
 			<div className="topic__block">{selectDate}</div>
 			<div className="topic__block">
-				<RangePicker
-					onChange={dateString =>
-						setSelectDate(JSON.stringify(dateString))
-					}
-				/>
+				<RangePicker onChange={dateString => setSelectDate(JSON.stringify(dateString))} />
 			</div>
 		</div>
 	);
