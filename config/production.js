@@ -59,6 +59,7 @@ module.exports = (env = 'production') => {
 					{ from: 'src/images', to: 'images' },
 					{ from: 'src/data', to: 'data' },
 					{ from: 'src/WEB-INF', to: 'WEB-INF' },
+					{ from: 'web.config', to: 'web.config' },
 				],
 			}),
 		],
