@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 /* You can cache page when page cahnge by import CacheRoute & CacheSwitch */
 // import CacheRoute, { CacheSwitch } from 'react-router-cache-route';
@@ -42,4 +43,4 @@ const App = () => {
 	);
 };
 
-export default App;
+export default hot(App);
