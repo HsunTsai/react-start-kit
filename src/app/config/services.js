@@ -4,8 +4,7 @@ const { domain, contextRoot } = webConfig;
 
 export default {
 	getContextRoot: contextRoot,
-	getLocale: `${contextRoot}data/`,
-	getLocaleEN: `${contextRoot}data/en.json`,
+	getLocale: `${contextRoot}locales`,
 	domain: `${domain}`,
 	apiTest: `${domain}/api/test`, // Your api url
 };

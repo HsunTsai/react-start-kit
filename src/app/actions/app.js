@@ -4,24 +4,23 @@ import services from '../config/services';
 export const FETCH_LOCALE_SUCCESS = 'FETCH_LOCALE_SUCCESS';
 export const FETCH_LOCALE_FAILED = 'FETCH_LOCALE_FAILED';
 
+/* 變更語系 */
 export const changeLang = (locale, dispatch) => {
 	axios
-		.get(`${services.getLocale}${locale}.json`)
+		.get(`${services.getLocale}/${locale}.json`)
 		.then(response => {
-			// success
 			dispatch({
 				type: FETCH_LOCALE_SUCCESS,
-				payload: {
-					locale,
-					messages: response.data,
-				},
+				payload: { locale, messages: response.data },
 			});
 		})
-		.catch(error => {
-			// failed
-			dispatch({
-				type: FETCH_LOCALE_FAILED,
-				payload: error,
+		.catch(() => {
+			/* 語系取得失敗時使用英文 */
+			axios.get(`${services.getLocale}/en.json`).then(response => {
+				dispatch({
+					type: FETCH_LOCALE_SUCCESS,
+					payload: { locale: 'en', messages: response.data },
+				});
 			});
 		});
 };

@@ -7,6 +7,12 @@ import { changeLang } from '../actions/app';
 
 import ReactIcon from '../../images/react_logo.png';
 
+const languageOptions = [
+	{ value: 'en', label: 'English' },
+	{ value: 'zh-tw', label: '繁體中文' },
+	{ value: 'zh-cn', label: '簡體中文' },
+];
+
 const { Option } = Select;
 
 const Header = ({ pages }) => {
@@ -15,6 +21,8 @@ const Header = ({ pages }) => {
 		language: { locale },
 	} = state.app;
 
+	/* 檢查與係是否存在於清單 */
+	const isLanguageExist = languageOptions.some(({ value }) => value === locale);
 	return (
 		<div className="app__header">
 			<img alt="" className="app__header-icon" src={ReactIcon} />
@@ -29,14 +37,12 @@ const Header = ({ pages }) => {
 				</NavLink>
 			))}
 			<div className="app__header-select">
-				<Select
-					defaultValue={locale}
-					onChange={lang => {
-						changeLang(lang, dispatch);
-					}}
-				>
-					<Option value="zh">中文</Option>
-					<Option value="en">英文</Option>
+				<Select value={isLanguageExist ? locale : 'en'} onChange={lang => changeLang(lang, dispatch)}>
+					{languageOptions.map(({ label, value }) => (
+						<Option key={value} value={value}>
+							{label}
+						</Option>
+					))}
 				</Select>
 			</div>
 		</div>
