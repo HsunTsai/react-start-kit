@@ -1,8 +1,8 @@
 import app from './app';
-// import topic from './topic';
+import home from './home';
 // ex. import newReducer from './newReducer'
 
-const combineReducer = reducers => {
+const rootReducer = reducers => {
 	const reducerKeys = Object.keys(reducers);
 	const objInitState = {};
 	reducerKeys.forEach(key => {
@@ -26,8 +26,9 @@ const combineReducer = reducers => {
 };
 
 // 將要用的reducer都放入下方object
-const reducers = combineReducer({
+const reducers = rootReducer({
 	app,
+	home,
 	// topic,
 });
 

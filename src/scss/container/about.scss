@@ -1,16 +1,16 @@
 .about {
-  flex: 1;
-  padding: 12px;
-  &__title {
-    color: #666;
-    font-weight: bold;
-    font-size: 24px;
-  }
-  &__avatar {
-    display: flex;
-    margin-top: 12px;
-    &-item{
-        margin-right: 6px !important;
-    }
-  }
+	flex: 1;
+	padding: 12px;
+	&__title {
+		color: #666;
+		font-weight: bold;
+		font-size: 24px;
+	}
+	&__avatar {
+		display: flex;
+		margin-top: 12px;
+		&-item {
+			margin-right: 6px !important;
+		}
+	}
 }

@@ -9,7 +9,7 @@ const options = [
 	{ label: '飛起來', value: 'Fly' },
 ];
 
-const Topics = () => {
+const Topic = () => {
 	const [clickOption, setClickOption] = useState(['Click']);
 	const [selectDate, setSelectDate] = useState('Empty');
 
@@ -28,4 +28,4 @@ const Topics = () => {
 	);
 };
 
-export default Topics;
+export default Topic;

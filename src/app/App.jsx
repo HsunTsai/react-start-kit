@@ -1,12 +1,12 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 /* You can cache page when page cahnge by import CacheRoute & CacheSwitch */
 // import CacheRoute, { CacheSwitch } from 'react-router-cache-route';
 import Loadable from 'react-loadable';
 
-import services from './config/services';
-import Header from './components/Header';
+import Header from './components/header/Header';
 import RouterLoading from './components/loading/Loading';
 
 const pages = [
@@ -23,23 +23,22 @@ const pages = [
 	{
 		path: '/topic',
 		name: 'Topic',
-		component: Loadable({ loader: () => import('./containers/Topics'), loading: RouterLoading }),
+		component: Loadable({ loader: () => import('./containers/Topic'), loading: RouterLoading }),
 	},
 ];
 
 const App = () => {
+	const { locale } = useIntl();
 	return (
-		<Router basename={services.getContextRoot}>
-			<div className="app">
-				<Header pages={pages} />
-				<Switch>
-					{pages.map((page, index) => (
-						<Route key={index.toString()} exact path={page.path} component={page.component} />
-					))}
-					<Redirect to={pages[0].path} />
-				</Switch>
-			</div>
-		</Router>
+		<div className="app">
+			<Header pages={pages} />
+			<Switch>
+				{pages.map((page, index) => (
+					<Route key={index.toString()} exact path={`/:locale${page.path}`} component={page.component} />
+				))}
+				<Redirect to={`/${locale}${pages[0].path}`} />
+			</Switch>
+		</div>
 	);
 };
 

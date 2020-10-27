@@ -1,20 +1,30 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
-// css
 import './scss/index.scss';
+
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { AppContainer } from 'react-hot-loader';
-import ReduxIntlProvider from './app/ReduxIntlProvider';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import IndexProvider from './app/IndexProvider';
 import App from './app/App';
+import services from './app/config/services';
 
 const render = Component => {
 	ReactDOM.render(
-		<ReduxIntlProvider>
-			<AppContainer>
-				<Component />
-			</AppContainer>
-		</ReduxIntlProvider>,
+		<BrowserRouter basename={services.getContextRoot}>
+			<Switch>
+				<Route
+					path="/:locale?" // ? => unnecessary
+					render={props => (
+						<IndexProvider {...props}>
+							<Component />
+						</IndexProvider>
+					)}
+				/>
+			</Switch>
+		</BrowserRouter>,
 		document.getElementById('app')
 	);
 };
