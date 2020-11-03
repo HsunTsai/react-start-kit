@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Checkbox, DatePicker } from 'antd';
+import { Button, Checkbox, DatePicker } from 'antd';
 
 const { RangePicker } = DatePicker;
 
@@ -23,6 +23,11 @@ const Topic = () => {
 			<div className="topic__block">{selectDate}</div>
 			<div className="topic__block">
 				<RangePicker onChange={dateString => setSelectDate(JSON.stringify(dateString))} />
+			</div>
+			<div className="topic__block">
+				<Button type="primary" onClick={() => history.push({ pathname: './about' })}>
+					Go to About Page
+				</Button>
 			</div>
 		</div>
 	);
